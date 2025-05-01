@@ -87,7 +87,22 @@
 
   <script>
     const startTime = 30;
-    const endTime = 55;
+    const endTime = 55;  
+     
+  
+      function playFeaturedSegment() {
+        const video = document.getElementById('featuredVideo');
+        video.currentTime = startTime;
+        video.play();
+  
+        const interval = setInterval(() => {
+          if (video.currentTime >= endTime || video.ended) {
+            video.pause();
+            clearInterval(interval);
+          }
+        }, 200);
+      }
+  
     const videoFiles = ['V1_IT.mp4', 'V1_SP.mp4'];
 
     const container = document.getElementById('videoContainer');
