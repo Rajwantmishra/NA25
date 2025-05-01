@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Media Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      margin-top: 40px;
+    }
+
+    .section {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .video-box, .doc-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    video {
+      width: 400px;
+      border: 2px solid #ccc;
+    }
+
+    iframe {
+      width: 500px;
+      height: 450px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎬 Play Segment from All Videos (30s–55s)</h2>
+  <div class="section" id="videoContainer"></div>
+
+  <h2>📊 PowerPoint Presentations</h2>
+
+
+  <h2>📄 PDF Documents</h2>
+  <div class="section">
+    <div class="doc-box">
+      <iframe src="en.pdf"></iframe>
+      <p>Document 1</p>
+<a href="https://r.office.microsoft.com/r/rlidowaviewhelp" target="_top">Learn more</a>
+    </div>
+    <div class="doc-box">
+      <iframe src="de.pdf"></iframe>
+      <p>Document 2</p>
+<a href="https://elddaapappd05.essilorluxottica.com/Leonardo-ai/ui/get-project?translation_id=11979&project_id=LEOPR000758&project_name=A%20Guide%20to%20Handling%20and%20Presenting%20Frames&upload_id=43245&history=true" target="_top">pdf</a>
+
+<a href="https://elddaapappd05.essilorluxottica.com/Leonardo-ai/ui/get-project?translation_id=11979&project_id=LEOPR000758&project_name=A%20Guide%20to%20Handling%20and%20Presenting%20Frames&upload_id=43245&history=true" target="_top">ppt</a>
+
+<a href="https://elddaapappd05.essilorluxottica.com/Leonardo-ai/ui/get-project?translation_id=8600&project_id=TRTPR000566&project_name=Customer%20Leaflet&upload_id=24774&country_admin=CA00076&target_language_id=1" target="_top">ppt</a>
+
+<a href="https://elddaapappd05.essilorluxottica.com/Leonardo-ai/ui/get-project?translation_id=12393&project_id=LEOPR000755&project_name=Master%20the%20Art%20of%20Frame%2C%20Shape%2C%20and%20Style%20Advice&upload_id=43242&file_id=342&history=true" target="_top">V</a>
+
+    </div>
+  </div>
+
+  <script>
+    const startTime = 30;
+    const endTime = 55;
+    const videoFiles = ['V1_EN.mp4', 'V1_IT.mp4', 'V1_SP.mp4'];
+
+    const container = document.getElementById('videoContainer');
+
+    videoFiles.forEach((file, index) => {
+      const videoId = `video${index}`;
+      const box = document.createElement('div');
+      box.className = 'video-box';
+      box.innerHTML = `
+        <video id="${videoId}" src="${file}" controls></video>
+        <button onclick="playSegment('${videoId}')">Play Segment (30s–55s)</button>
+        <p>${file}</p>
+      `;
+      container.appendChild(box);
+    });
+
+    function playSegment(videoId) {
+      const video = document.getElementById(videoId);
+      video.currentTime = startTime;
+      video.play();
+
+      const interval = setInterval(() => {
+        if (video.currentTime >= endTime || video.ended) {
+          video.pause();
+          clearInterval(interval);
+        }
+      }, 200);
+    }
+  </script>
+
+</body>
+</html>
